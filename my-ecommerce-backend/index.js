@@ -4,11 +4,10 @@ const port = 3000;
 const cors = require('cors');
 app.use(cors());
 
-// Mock product data
 const products = [
-  { id: 1, name: 'Artistic Pen', description: 'A beautiful artistic pen.', price: 9.99 },
-  { id: 2, name: 'Sketchbook', description: 'A perfect sketchbook for your drawings.', price: 12.99 },
-  { id: 3, name: 'Watercolor Set', description: '24 colors watercolor set.', price: 19.99 }
+  { id: 1, name: 'Wild horses', description: 'Horses, Pair, Wild horses image', price: 200.99 },
+  { id: 2, name: 'Grafitti', description: 'Color, Acrylic paint, Art image', price: 120.99 },
+  { id: 3, name: 'Watercolor', description: 'colors watercolor .', price: 109.99 }
 ];
 
 // Endpoint to get products

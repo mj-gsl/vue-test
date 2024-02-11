@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.product-item {
+    width: 240px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.product-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.product-description {
+    color: #666;
+    height: 50px;
+    /* Adjust based on your content */
+    overflow: hidden;
+}
+
+.product-price {
+    color: #333;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.product-rating {
+    color: #e5a524;
+    /* Gold color for stars */
+}
+
+.product-shipping {
+    font-size: 0.8rem;
+    color: #333;
+    margin-top: 5px;
+}
