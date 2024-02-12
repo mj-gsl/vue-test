@@ -11,46 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-<<<<<<< HEAD
-=======
-
->>>>>>> d38a7cd7cc7bb15eed43626c4e11e602bb4bf01a
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
         node-version: '14'
-<<<<<<< HEAD
     - name: Install dependencies
       run: npm install
       working-directory: ./my-ecommerce-backend
     - name: Build Docker image
       run: docker build . --file Dockerfile --tag <docker_username>/<docker_repository>:${{ github.sha }}
       working-directory: ./my-ecommerce-backend
-=======
-
-    - name: Install dependencies
-      run: npm install
-      working-directory: ./my-ecommerce-backend
-
-    - name: Run tests
-      run: npm test
-      working-directory: ./my-ecommerce-backend
-
-    - name: Build Docker image
-      run: docker build . --file Dockerfile --tag mj5248/test-vue:${{ github.sha }}
-      working-directory: ./my-ecommerce-backend
-
->>>>>>> d38a7cd7cc7bb15eed43626c4e11e602bb4bf01a
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-<<<<<<< HEAD
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Push Docker image to Docker Hub
       run: docker push <docker_username>/<docker_repository>:${{ github.sha }}
-=======
-
-    - name: Push Docker image to Docker Hub
-      run: docker push mj5248/test-vue:${{ github.sha }}
->>>>>>> d38a7cd7cc7bb15eed43626c4e11e602bb4bf01a
