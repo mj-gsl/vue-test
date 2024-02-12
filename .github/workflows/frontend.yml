@@ -15,9 +15,23 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '14'
+<<<<<<< HEAD
     - name: Install dependencies
       run: npm install
       working-directory: ./my-ecommerce-frontend
+=======
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./my-ecommerce-frontend
+
+>>>>>>> d38a7cd7cc7bb15eed43626c4e11e602bb4bf01a
     - name: Build project
       run: npm run build
       working-directory: ./my-ecommerce-frontend
