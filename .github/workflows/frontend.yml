@@ -22,3 +22,10 @@ jobs:
     - name: Build project
       run: npm run build
 
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./my-ecommerce-frontend
+
+    - name: Build project
+      run: npm run build
+      working-directory: ./my-ecommerce-frontend
