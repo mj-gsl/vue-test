@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: marketplace
+      POSTGRES_PASSWORD: xc2mDcAANn0B12$yutz!
+      POSTGRES_DB: mp
+    ports:
+      - "5436:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d 
+
+  backend:
+    build: ./my-ecommerce-backend
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: postgres  # This will internally be resolved to the service named 'postgres'
+      DB_PORT: 5432  # Use the internal port of the container
+      DB_USER: marketplace
+      DB_PASSWORD: xc2mDcAANn0B12$yutz!
+      DB_NAME: mp
+      NODE_ENV: development
+      JWT_SECRET: myjwtsecret
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./my-ecommerce-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

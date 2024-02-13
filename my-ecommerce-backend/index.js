@@ -1,20 +1,30 @@
+require('dotenv').config();
 const express = require('express');
-const app = express();
-const port = 3000;
+const { Pool } = require('pg');
 const cors = require('cors');
+
+const app = express();
 app.use(cors());
 
-const products = [
-  { id: 1, name: 'Wild horses', description: 'Horses, Pair, Wild horses image', price: 200.99 },
-  { id: 2, name: 'Grafitti', description: 'Color, Acrylic paint, Art image', price: 120.99 },
-  { id: 3, name: 'Watercolor', description: 'colors watercolor .', price: 109.99 }
-];
-
-// Endpoint to get products
-app.get('/products', (req, res) => {
-  res.json(products);
+const pool = new Pool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
+app.get('/products', async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT * FROM products');
+    res.json(rows);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).send('Server error');
+  }
+});
+
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`App listening at http://localhost:${port}`);
 });
