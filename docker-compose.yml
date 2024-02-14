@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: xc2mDcAANn0B12$yutz!
       POSTGRES_DB: mp
     ports:
-      - "5436:5432"
+      - "5435:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./postgres-init:/docker-entrypoint-initdb.d 
