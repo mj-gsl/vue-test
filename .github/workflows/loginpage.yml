@@ -1,14 +1,14 @@
-name: loginpage CI/CD
+name: LoginPage CI/CD
 
 on:
   push:
     branches: [ main ]
     paths:
-      - './loginpage/**'
+      - './LoginPage/**'
   pull_request:
     branches: [ main ]
     paths:
-      - './loginpage/**'
+      - './LoginPage/**'
 
 jobs:
   build-and-push:
@@ -21,11 +21,11 @@ jobs:
         node-version: '14'
     - name: Install dependencies
       run: npm install
-      working-directory: ./loginpage
+      working-directory: ./LoginPage
     - name: Build Docker image
       run: |
-        docker build . --file Dockerfile --tag mj5248/test-vue-loginpage:${{ github.sha }} --tag mj5248/test-vue-loginpage:latest
-      working-directory: ./loginpage
+        docker build . --file Dockerfile --tag mj5248/test-vue-LoginPage:${{ github.sha }} --tag mj5248/test-vue-LoginPage:latest
+      working-directory: ./LoginPage
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
@@ -33,5 +33,5 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     - name: Push Docker image to Docker Hub
       run: |
-        docker push mj5248/test-vue-loginpage:${{ github.sha }}
-        docker push mj5248/test-vue-loginpage:latest
+        docker push mj5248/test-vue-LoginPage:${{ github.sha }}
+        docker push mj5248/test-vue-LoginPage:latest
