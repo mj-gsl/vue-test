@@ -4,11 +4,11 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'loginPage/**'
+      - 'LoginPage/**'
   pull_request:
     branches: [ main ]
     paths:
-      - 'loginPage/**'
+      - 'LoginPage/**'
 
 jobs:
   build-and-push:
