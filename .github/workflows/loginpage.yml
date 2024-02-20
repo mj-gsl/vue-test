@@ -24,7 +24,7 @@ jobs:
       working-directory: ./LoginPage
     - name: Build Docker image
       run: |
-        docker build . --file Dockerfile --tag mj5248/test-vue-LoginPage:${{ github.sha }} --tag mj5248/test-vue-LoginPage:latest
+        docker build . --file Dockerfile --tag mj5248/test-vue-loginpage:${{ github.sha }} --tag mj5248/test-vue-loginpage:latest
       working-directory: ./LoginPage
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
@@ -33,5 +33,5 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     - name: Push Docker image to Docker Hub
       run: |
-        docker push mj5248/test-vue-LoginPage:${{ github.sha }}
-        docker push mj5248/test-vue-LoginPage:latest
+        docker push mj5248/test-vue-loginpage:${{ github.sha }}
+        docker push mj5248/test-vue-loginpage:latest
