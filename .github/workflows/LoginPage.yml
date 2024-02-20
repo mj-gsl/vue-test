@@ -3,12 +3,8 @@ name: LoginPage CI/CD
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'LoginPage/**'
   pull_request:
     branches: [ main ]
-    paths:
-      - 'LoginPage/**'
 
 jobs:
   build-and-push:
