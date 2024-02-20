@@ -1,0 +1,37 @@
+name: LoginPage CI/CD
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - './loginPage/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - './loginPage/**'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./loginPage
+    - name: Build Docker image
+      run: |
+        docker build . --file Dockerfile --tag mj5248/test-vue-loginpage:${{ github.sha }} --tag mj5248/test-vue-loginpage:latest
+      working-directory: ./loginPage
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+    - name: Push Docker image to Docker Hub
+      run: |
+        docker push mj5248/test-vue-loginpage:${{ github.sha }}
+        docker push mj5248/test-vue-loginpage:latest

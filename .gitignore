@@ -1,0 +1,18 @@
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Production build output
+/dist
+
+# Logs
+*.log
+npm-debug.log*
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache

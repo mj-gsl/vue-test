@@ -17,8 +17,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DB_HOST: postgres  # This will internally be resolved to the service named 'postgres'
-      DB_PORT: 5432  # Use the internal port of the container
+      DB_HOST: postgres  
+      DB_PORT: 5432  
       DB_USER: marketplace
       DB_PASSWORD: xc2mDcAANn0B12$yutz!
       DB_NAME: mp
@@ -27,10 +27,22 @@ services:
     depends_on:
       - postgres
 
+  # For Loginpage microservice
+  loginpage:
+    build: 
+      context: ./LoginPage
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+  # -----------
   frontend:
     build: ./my-ecommerce-frontend
     ports:
-      - "8080:80"
+      - "8088:80"
     depends_on:
       - backend
 
