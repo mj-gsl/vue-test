@@ -1,109 +1,98 @@
 <template>
   <div id="app">
-    <ProductList />
-    <!-- if i want to add other components based on the authentication status -->
+    <nav>
+      <router-link to="/" class="nav-button">Home</router-link>
+      <router-link to="/category" class="nav-button">Category</router-link>
+    </nav>
+    <!-- <ProductList /> -->
+    <div class="container">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-import ProductList from './components/ProductList.vue'
-import './assets/main.css';
+// import ProductList from "./components/ProductList.vue";
+// import "./assets/main.css";
 
 export default {
-  name: 'App',
-  components: {
-    ProductList
-  },
+  // name: "App",
+  // components: {
+  //   ProductList,
+  // },
   created() {
     this.checkAuthentication();
   },
   methods: {
     checkAuthentication() {
-      fetch('http://localhost:3001/auth/login/success')
-        .then(response => response.json())
-        .then(data => {
+      fetch("http://localhost:3001/auth/login/success")
+        .then((response) => response.json())
+        .then((data) => {
           if (data.success) {
             // Handle the authenticated user
-            console.log('User is authenticated:', data.user);
+            console.log("User is authenticated:", data.user);
             // Here i might want to store the user data in a global state or emit an event, maybe later!!
           } else {
             // User is not authenticated
-            console.log('User is not authenticated');
+            console.log("User is not authenticated");
             // Redirect to login or show an error message
             // this.$router.push('/login'); // if i am using vue-router but i didn't use
           }
         })
-        .catch(error => {
-          console.error('Error:', error);
+        .catch((error) => {
+          console.error("Error:", error);
           // Handle the error, maybe show a notification or message
         });
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: #f5f5f5;
-  margin: 0;
-  padding: 20px;
+  font-family: Arial, sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
 }
 
-/* Styling for the product list, you can adjust based on your actual component structure */
-.product-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  width: 100%;
-  max-width: 1200px; /* Maximum width of the product list */
+nav {
+  margin-bottom: 20px;
 }
-
-.product-item {
-  background: white;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.product-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.product-image img {
-  width: 100%;
-  height: auto;
+.nav-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  border: 1px solid #007bff;
   border-radius: 5px;
-  margin-bottom: 10px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.nav-button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
 }
 
-.product-info {
-  text-align: center;
-}
-
-.product-info h1 {
-  font-size: 1.5rem;
+nav router-link {
+  margin-right: 10px;
+  text-decoration: none;
   color: #333;
-  margin-bottom: 5px;
 }
 
-.product-info .product-description {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 10px;
+nav router-link:hover {
+  color: #007bff;
 }
 
-.product-info .product-price {
-  font-size: 1.1rem;
-  color: #2c3e50;
-  font-weight: bold;
+.container {
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-/* Add any additional styles for other elements within your App.vue here */
 </style>
