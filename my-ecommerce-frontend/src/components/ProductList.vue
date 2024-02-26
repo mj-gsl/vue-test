@@ -12,14 +12,10 @@
         </div>
   
         <!-- Search Bar -->
-        <div class="search-bar">
-          <input type="text" placeholder="Search..." />
-        </div>
+        <div>
+         <SearchBar/>
+       </div>
   
-        <!-- Cart Icon -->
-        <div class="cart-icon">
-          <span>🛒</span>
-        </div>
       </header>
   
       <!-- Category Links Section -->
@@ -40,37 +36,39 @@
   
   <script>
   import axios from 'axios';
+import SearchBar from './SearchBar.vue';
   
   export default {
     name: 'ProductList',
     data() {
-      return {
-        products: [],
-        images: [/* Add your image paths here */],
-      };
+        return {
+            products: [],
+            images: [ /* Add your image paths here */],
+        };
     },
     mounted() {
-      this.fetchProducts();
+        this.fetchProducts();
     },
     methods: {
-      async fetchProducts() {
-        try {
-          // Hier füge den Code für die Produktdaten entsprechend der ausgewählten Kategorie hinzu
-          // Du musst möglicherweise die Kategorie als Prop übergeben oder den Router verwenden, um die Kategorie zu erhalten
-          // Beispiel:
-          // const category = this.$route.params.category;
-          // const response = await axios.get(`http://localhost:3000/products?category=${category}`);
-          // this.products = response.data;
-  
-          // Hier ist ein Dummy-Beispiel ohne Kategoriefilterung
-          const response = await axios.get('http://localhost:3000/products');
-          this.products = response.data;
-        } catch (error) {
-          console.error('Error fetching products:', error);
-        }
-      },
+        async fetchProducts() {
+            try {
+                // Hier füge den Code für die Produktdaten entsprechend der ausgewählten Kategorie hinzu
+                // Du musst möglicherweise die Kategorie als Prop übergeben oder den Router verwenden, um die Kategorie zu erhalten
+                // Beispiel:
+                // const category = this.$route.params.category;
+                // const response = await axios.get(`http://localhost:3000/products?category=${category}`);
+                // this.products = response.data;
+                // Hier ist ein Dummy-Beispiel ohne Kategoriefilterung
+                const response = await axios.get('http://localhost:3000/products');
+                this.products = response.data;
+            }
+            catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        },
     },
-  };
+    components: { SearchBar }
+};
   </script>
   
   <style scoped>
