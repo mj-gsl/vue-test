@@ -1,8 +1,13 @@
 <template>
   <div id="app">
+    <Header/>
     <nav>
-      <router-link to="/" class="nav-button">Home</router-link>
-      <router-link to="/category" class="nav-button">Category</router-link>
+      <router-link to="/" >All Category</router-link>
+      <!-- <router-link to="/category/Painting" >Painting</router-link>
+      <router-link to="/category/Drawing" >Drawing</router-link>
+      <router-link to="/category/Sculpture" >Sculpture</router-link>
+      <router-link to="/category/Printmaking" >Printmaking</router-link>
+      <router-link to="/category" /> -->
     </nav>
     <!-- <ProductList /> -->
     <div class="container">
@@ -14,8 +19,14 @@
 <script>
 // import ProductList from "./components/ProductList.vue";
 // import "./assets/main.css";
+import Header from "@/components/Header-component.vue";
 
 export default {
+  name: "App",
+  components: {
+    // Register the Header Component
+    Header,
+  },
   // name: "App",
   // components: {
   //   ProductList,
@@ -56,6 +67,7 @@ export default {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  width: 100%;
 }
 
 nav {
@@ -70,7 +82,10 @@ nav {
   background-color: #007bff;
   border: 1px solid #007bff;
   border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border-color 0.3s;
 }
 .nav-button:hover {
   background-color: #0056b3;
