@@ -19,14 +19,14 @@
         </select>
       </div>
     </div>
-    <!-- Search Bar -->
-    <input
-      type="text"
-      v-model="searchQuery"
-      placeholder="Search..."
-      @input="handleSearchInput"
-      class="search-bar"
-    />
+    <!-- Icon-Bibliothek laden -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Das Formular -->
+<form class="example" action="action_page.php">
+    <input type="text" placeholder="Suche..." name="search">
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
     <!-- Shopping Cart Icon -->
     <router-link to="/shoppingcarte" class="shopping-cart-icon">
       <i class="fas fa-shopping-cart"></i>
@@ -91,14 +91,45 @@ input[type="text"] {
   border: 1px solid #ccc;
   width: 200px;
 }
-
-.search-bar {
-  flex-grow: 1;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-right: 50px;
+* {
+    box-sizing: border-box;
 }
+
+/* Stil für das Suchfeld */
+form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+}
+
+/* Stil für den Suchbutton */
+form.example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Doppelte Rahmen verhindern */
+    cursor: pointer;
+}
+
+form.example button:hover {
+    background: #0b7dda;
+}
+
+/* Floats zurücksetzen */
+form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
 .shopping-cart-icon {
   font-size: 24px; 
   color: #000; 
