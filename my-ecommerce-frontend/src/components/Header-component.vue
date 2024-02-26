@@ -9,8 +9,8 @@
         <select v-model="selectedCategory" @change="selectCategory">
           <option value="" disabled>Select Category</option>
           <option
-            v-for="(category, index) in categories"
-            :value="index"
+            v-for="category in categories"
+            :value="category.name"
             :key="category.id"
           >
             {{ category.name }}
@@ -41,9 +41,10 @@ export default {
     };
   },
   methods: {
-    handleCategoryChange() {
-      // Handle category change event
-      // You can implement filtering based on the selected category
+    selectCategory() {
+      if (this.selectedCategory) {
+        this.$router.push({ name: 'CategoryShow', params: { name: this.selectedCategory } });
+      }
     },
     handleSearchInput() {
       // Handle search input event
