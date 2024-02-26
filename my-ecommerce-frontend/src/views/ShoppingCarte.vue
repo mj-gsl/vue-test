@@ -3,10 +3,11 @@
         <h1>Shopping List</h1>
         <ul>
             <li v-for="(item, index) in shoppingList" :key="index">
-                <div>
-                    <img :src="item.image" :alt="item.name" class="artwork-image" />
-                    <span>{{ item.name }} - Quantity: {{ item.quantity }}</span>
-                </div>
+                <img :src="item.image" :alt="item.name" class="artwork-image" />
+                <span>{{ item.name }} - Quantity: {{ item.quantity }}</span>
+                <button @click="removeItem(index)">
+                    <i class="fas fa-trash-alt"></i> <!-- Assuming you are using Font Awesome -->
+                </button>
             </li>
         </ul>
     </div>
@@ -26,16 +27,31 @@ export default {
             this.shoppingList = JSON.parse(storedShoppingList);
         }
     },
+    methods: {
+        removeItem(index) {
+            this.shoppingList.splice(index, 1);
+            this.saveShoppingList();
+        },
+        saveShoppingList() {
+            sessionStorage.setItem("shoppingList", JSON.stringify(this.shoppingList));
+        },
+    },
 };
 </script>
   
 <style scoped>
 .artwork-image {
-    width: 100px;
+    width: 50px;
     /* Adjust as needed */
-    height: 100px;
+    height: 50px;
     /* Adjust as needed */
     margin-right: 10px;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 </style>
   
