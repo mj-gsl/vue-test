@@ -47,18 +47,21 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  width: 100%;
 }
 
 .category-container {
   flex-basis: calc(33.33% - 20px);
   margin-bottom: 20px;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .category-link {
   display: block;
   text-decoration: none;
   color: inherit;
+  width: 100%;
 }
 
 .category-image {

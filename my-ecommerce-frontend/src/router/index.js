@@ -9,6 +9,11 @@ const routes = [
         path: "/category", 
         name: "Category", 
         component: () => import(/*webpackChunkName: "Category" */ "../views/CategoryView.vue") },
+    {
+        path: "/category/:name",
+        name: "CategoryShow", 
+        component: () => import(/*webpackChunkName: "CategoryShow" */ "../views/CategoryShow.vue")
+    }
     // {path: "/category/:categoryId", name: "Artwork", component: Artwork}
     ];
 
