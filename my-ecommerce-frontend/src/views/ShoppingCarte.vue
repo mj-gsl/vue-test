@@ -41,11 +41,9 @@ export default {
   
 <style scoped>
 .artwork-image {
-    width: 50px;
-    /* Adjust as needed */
-    height: 50px;
-    /* Adjust as needed */
-    margin-right: 10px;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
 }
 
 button {

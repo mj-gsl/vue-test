@@ -17,7 +17,7 @@
           <p>{{ artwork.description }}</p>
           <p>Artist: {{ artwork.artist }}</p>
           <!-- Add to shopping list button -->
-          <button @click="addToShoppingList(artwork)">Add to Shopping List</button>
+          <button @click="addToShoppingList(artwork)" class="add-to-cart-button">Add to Shopping List</button>
         </div>
       </div>
     </div>
@@ -102,5 +102,29 @@ export default {
 
 .artwork-details {
   margin-top: 10px;
+}
+
+.add-to-cart-icon {
+  cursor: pointer;
+  font-size: 24px;
+  color: #000;
+}
+.add-to-cart-button {
+  background-color: #4CAF50; /* Green background */
+  border: none; /* Remove border */
+  color: white; /* White text */
+  padding: 10px 20px; /* Padding */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Display as inline block */
+  font-size: 16px; /* Font size */
+  border-radius: 5px; /* Rounded corners */
+  transition-duration: 0.4s; /* Transition duration */
+  cursor: pointer; /* Cursor pointer */
+}
+
+/* Add to Shopping List Button Hover Effect */
+.add-to-cart-button:hover {
+  background-color: #45a049; /* Darker green background on hover */
 }
 </style>

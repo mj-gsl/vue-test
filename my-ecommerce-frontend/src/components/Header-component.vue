@@ -4,6 +4,7 @@
     <div class="logo-and-categories">
       <!-- Logo -->
       <img src="@/assets/logo.png" alt="Logo" class="logo" />
+      <router-link to="/" class="home-link"><h1>Creative Marketplace</h1></router-link>
       <!-- Categories Dropdown -->
       <div class="dropdown">
         <select v-model="selectedCategory" @change="selectCategory">
@@ -103,6 +104,11 @@ input[type="text"] {
   color: #000; /* Adjust the color as needed */
   text-decoration: none;
   margin-right: 20px; /* Remove underline */
+}
+.home-link {
+  margin-right: 20px; /* Adjust spacing between the logo and home link */
+  text-decoration: none; /* Remove underline */
+  color: #000; /* Adjust color as needed */
 }
 
 </style>

@@ -1,9 +1,6 @@
 <template>
   <div id="app">
     <Header />
-    <nav>
-      <router-link to="/">All Category</router-link>
-    </nav>
     <div class="container">
       <router-view />
     </div>
