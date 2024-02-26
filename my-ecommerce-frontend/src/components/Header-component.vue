@@ -26,7 +26,10 @@
       @input="handleSearchInput"
       class="search-bar"
     />
-    <router-link to="/shoppingcarte" class="shopping-list-button">Shopping List</router-link>
+    <!-- Shopping Cart Icon -->
+    <router-link to="/shoppingcarte" class="shopping-cart-icon">
+      <i class="fas fa-shopping-cart"></i>
+    </router-link>
   </div>
 </template>
 
@@ -93,5 +96,13 @@ input[type="text"] {
   padding: 8px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  margin-right: 50px;
 }
+.shopping-cart-icon {
+  font-size: 24px; /* Adjust the size as needed */
+  color: #000; /* Adjust the color as needed */
+  text-decoration: none;
+  margin-right: 20px; /* Remove underline */
+}
+
 </style>
