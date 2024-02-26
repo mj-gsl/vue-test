@@ -2,7 +2,7 @@
   <div class="category">
     <!-- <h1>Category</h1> -->
     <div v-for="(category, categoryName) in categories" :key="category.id" class="category-container">
-      <router-link :to="category.name" class="category-link">
+      <router-link :to="'/category/' + category.name" class="category-link">
         <h1>{{ category.name }}</h1>
         <img v-if="category.artworks.length > 0" :src="getImagePath(category, category.artworks[0].image)" :alt="categoryName" class="category-image">
         <p>{{ category.description }}</p> 
