@@ -1,59 +1,110 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* main.css */
 
-.product-list {
+body {
+    margin: 0; /* Reset default body margin */
+  }
+  
+  /* Add any additional global styles here */
+  
+  #app {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0; /* Hintergrundfarbe nach Bedarf anpassen */
+  }
+  
+  .app-logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .app-logo img {
+    width: 50px; /* Logo-Breite nach Bedarf anpassen */
+    height: 50px; /* Logo-Höhe nach Bedarf anpassen */
+    margin-right: 10px;
+  }
+  
+  .search-bar {
+    flex-grow: 1;
+    margin: 0 10px;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    outline: none;
+  }
+  
+  .cart-icon {
+    font-size: 24px;
+  }
+  
+  /* .product-list und .product-item von Tailwind CSS */
+  .product-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 20px;
-}
-
-.product-item {
+  }
+  
+  .product-item {
     width: 240px;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
-}
-
-.product-item:hover {
+  }
+  
+  .product-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.product-image img {
+  }
+  
+  .product-image img {
     width: 100%;
     height: auto;
     display: block;
-}
-
-.product-info {
+  }
+  
+  .product-info {
     padding: 10px;
     text-align: center;
-}
-
-.product-description {
+  }
+  
+  .product-description {
     color: #666;
     height: 50px;
-    /* Adjust based on your content */
+    /* Anpassen basierend auf deinem Inhalt */
     overflow: hidden;
-}
-
-.product-price {
+  }
+  
+  .product-price {
     color: #333;
     margin: 10px 0;
     font-weight: bold;
-}
-
-.product-rating {
+  }
+  
+  .product-rating {
     color: #e5a524;
-    /* Gold color for stars */
-}
-
-.product-shipping {
+    /* Goldene Farbe für Sterne */
+  }
+  
+  .product-shipping {
     font-size: 0.8rem;
     color: #333;
     margin-top: 5px;
-}
+  }
+  
