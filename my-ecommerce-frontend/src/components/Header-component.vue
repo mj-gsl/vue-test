@@ -26,6 +26,7 @@
       @input="handleSearchInput"
       class="search-bar"
     />
+    <router-link to="/shoppingcarte" class="shopping-list-button">Shopping List</router-link>
   </div>
 </template>
 

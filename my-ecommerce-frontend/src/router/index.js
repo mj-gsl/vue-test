@@ -13,6 +13,11 @@ const routes = [
         path: "/category/:name",
         name: "CategoryShow", 
         component: () => import(/*webpackChunkName: "CategoryShow" */ "../views/CategoryShow.vue")
+    },
+    {
+        path: "/shoppingcarte",
+        name: "ShoppingCarte", 
+        component: () => import(/*webpackChunkName: "ShoppingCarte" */ "../views/ShoppingCarte.vue")
     }
     // {path: "/category/:categoryId", name: "Artwork", component: Artwork}
     ];
