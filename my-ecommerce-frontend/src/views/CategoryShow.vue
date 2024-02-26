@@ -16,7 +16,7 @@
         <div class="artwork-details">
           <p>{{ artwork.description }}</p>
           <p>Artist: {{ artwork.artist }}</p>
-          <!-- Add to shopping list button -->
+          <h3>Price: ${{ artwork.price }}</h3> 
           <button @click="addToShoppingList(artwork)" class="add-to-cart-button">Add to Shopping List</button>
         </div>
       </div>
@@ -74,7 +74,8 @@ export default {
           name: artwork.name,
           category: this.categoryname,
           quantity: 1,
-          image: this.getImagePath(artwork.image) // Include the image path
+          image: this.getImagePath(artwork.image), // Include the image path
+          price: artwork.price // Include the price
         });
       }
 
@@ -121,6 +122,15 @@ export default {
   border-radius: 5px; /* Rounded corners */
   transition-duration: 0.4s; /* Transition duration */
   cursor: pointer; /* Cursor pointer */
+}
+.add-to-cart-button:focus,
+.add-to-cart-button:active {
+  outline: none; /* Remove the default focus outline */
+  transform: scale(0.95); /* Scale down the button slightly */
+  transition: transform 0.2s ease; /* Add a smooth transition */
+}
+.add-to-cart-button:active {
+  transform: scale(1); /* Reset the scale to 1 */
 }
 
 /* Add to Shopping List Button Hover Effect */

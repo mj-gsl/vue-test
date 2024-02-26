@@ -21,15 +21,15 @@ export default {
   methods: {
     checkAuthentication() {
       fetch("http://localhost:3001/auth/login/success")
-        .then((response) => response.json())
-        .then((data) => {
+        .then(response => response.json())
+        .then(data => {
           if (data.success) {
             console.log("User is authenticated:", data.user);
           } else {
             console.log("User is not authenticated");
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.error("Error:", error);
         });
     },
@@ -46,21 +46,6 @@ export default {
   justify-content: center;
   min-height: 100vh;
   width: 100%;
-}
-
-nav {
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-nav router-link {
-  margin-right: 10px;
-  text-decoration: none;
-  color: #333;
-}
-
-nav router-link:hover {
-  color: #007bff;
 }
 
 .container {

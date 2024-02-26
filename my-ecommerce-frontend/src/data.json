@@ -10,28 +10,32 @@
                     "name": "space-for-reflection",
                     "artist": "Chuck Pinson",
                     "image": "space-for-reflection.jpg",
-                    "description": "It is a vision of what comes to mind as the idyllic spot to spend time in quiet reflection and prayer, as sun rays, rugged mountains, and brilliant autumn aspen trees reflect on an alpine lake."
+                    "description": "It is a vision of what comes to mind as the idyllic spot to spend time in quiet reflection and prayer, as sun rays, rugged mountains, and brilliant autumn aspen trees reflect on an alpine lake.",
+                    "price": 250
                 },
                 {
                     "id": 2,
                     "name": "autumn-reflection",
                     "artist": "Wild Wings",
                     "image": "autumn-reflection.jpg",
-                    "description": "The delicate beauty of an Autumn fog is about to disappear as the morning sun breaks through. In much the same way these deer offer the viewer only a brief glance before vanishing into the nearby woodlands."
+                    "description": "The delicate beauty of an Autumn fog is about to disappear as the morning sun breaks through. In much the same way these deer offer the viewer only a brief glance before vanishing into the nearby woodlands.",
+                    "price": 180
                 },
                 {
                     "id": 3,
                     "name": "a-superior-morning",
                     "artist": "Duane Barnhart",
                     "image": "a-superior-morning.jpg",
-                    "description": "This painting was done for competition in the Grand Marais Art Colony plein air competition in September, 2012. it is on location at Grand Marais, Minnesota. It was a beautiful morning and it brings back great memories of a slower time."
+                    "description": "This painting was done for competition in the Grand Marais Art Colony plein air competition in September, 2012. it is on location at Grand Marais, Minnesota. It was a beautiful morning and it brings back great memories of a slower time.",
+                    "price": 300
                 },
                 {
                     "id": 4,
                     "name": "dillon-lake",
                     "artist": "Anne Gifford",
                     "image": "dillon-lake.jpg",
-                    "description": "Dillon Lake is in the Rocky Mountains near Vail, Colorado.....it's a great place to spend a quiet weekend! I pressed waxed paper into the wet paint to get the texture in the mountains."
+                    "description": "Dillon Lake is in the Rocky Mountains near Vail, Colorado.....it's a great place to spend a quiet weekend! I pressed waxed paper into the wet paint to get the texture in the mountains.",
+                    "price": 150
                 }
             ]
         },
@@ -45,28 +49,32 @@
                     "name": "Bouquet",
                     "artist": "Henriëtte Geertruida Knip",
                     "image": "Bouquet.jpg",
-                    "description": "One of her watercolours even won a silver medal in Paris in 1819. Creator: Henriëtte Geertruida Knip Date: 1820. Institution: Rijksmuseum. Provider: Rijksmuseum. Providing Country: Netherlands. PD for Public Domain Mark."
+                    "description": "One of her watercolours even won a silver medal in Paris in 1819. Creator: Henriëtte Geertruida Knip Date: 1820. Institution: Rijksmuseum. Provider: Rijksmuseum. Providing Country: Netherlands. PD for Public Domain Mark.",
+                    "price": 200
                 },
                 {
                     "id": 2,
                     "name": "Songs and Echoes",
                     "artist": "E.Barnard",
                     "image": "Songs-and-Echoes.jpg",
-                    "description": "Image taken from page 45 of 'Songs and Echoes ... Illustrated by E. Barnard'."
+                    "description": "Image taken from page 45 of 'Songs and Echoes ... Illustrated by E. Barnard'.",
+                    "price": 120
                 },
                 {
                     "id": 3,
                     "name": "Flower Still Life with a Timepiece",
                     "artist": "Willem van Aelst",
                     "image": "Flower-Still-Life.jpg",
-                    "description": "Date: 1663. Institution: Mauritshuis. Provider: Digitale Collectie. Providing Country: Netherlands. PD for Public Domain Mark."
+                    "description": "Date: 1663. Institution: Mauritshuis. Provider: Digitale Collectie. Providing Country: Netherlands. PD for Public Domain Mark.",
+                    "price": 180
                 },
                 {
                     "id": 4,
                     "name": "Tulip, two Branches of Myrtle and two Shells",
                     "artist": "Maria Sibylla Merian",
                     "image": "Tulip.jpg",
-                    "description": "Institution: Rijksmuseum. Provider: Rijksmuseum. Providing Country: Netherlands. Public Domain."
+                    "description": "Institution: Rijksmuseum. Provider: Rijksmuseum. Providing Country: Netherlands. Public Domain.",
+                    "price": 250
                 }
             ]
         },
@@ -80,28 +88,32 @@
                     "name": "Andromeda and the Sea-Monster; Leda and the Swan",
                     "artist": "Massimiliano Soldani-Benzi",
                     "image": "Andromeda_and_the_Sea.jpg",
-                    "description": "Each depicts an episode from classical mythology, and the two are visually linked by opposing compositions.Both figures also display heightened emotion: Leda expresses seductive eroticism, and Andromeda expresses terrifying horror."
+                    "description": "Each depicts an episode from classical mythology, and the two are visually linked by opposing compositions.Both figures also display heightened emotion: Leda expresses seductive eroticism, and Andromeda expresses terrifying horror.",
+                    "price": 350
                 },
                 {
                     "id": 2,
                     "name": "Limestone statue of a husband and wife",
                     "artist": "Found/Acquired Egypt",
                     "image": "husband-and-wife.jpg",
-                    "description": "We do not know the names of this couple, or where their statue originate, through a number of similar statues have been found in Saqqara."
+                    "description": "We do not know the names of this couple, or where their statue originate, through a number of similar statues have been found in Saqqara.",
+                    "price": 400
                 },
                 {
                     "id": 3,
                     "name": "Unique forms of continuity in space",
                     "artist": "Umberto Boccioni",
                     "image": "continuity-in-space.jpg",
-                    "description": "it is a unique sculptural rhythm, not the structure of the body, but the structure of the body’s action."
+                    "description": "it is a unique sculptural rhythm, not the structure of the body, but the structure of the body’s action.",
+                    "price": 300
                 },
                 {
                     "id": 4,
                     "name": "Forging a Sword (The Smith of Solingen)",
                     "artist": "Wilhelm Albermann",
                     "image": "smith-of-solingen.jpg",
-                    "description": "In 1895 Wilhelm Albermann’s Smith of Solingen was erected on a fountain at the market square in Solingen, Unfortunately, the fountain and the sculpture were destroyed by bombs in 1944."
+                    "description": "In 1895 Wilhelm Albermann’s Smith of Solingen was erected on a fountain at the market square in Solingen, Unfortunately, the fountain and the sculpture were destroyed by bombs in 1944.",
+                    "price": 280
                 }
             ]
         },
@@ -115,14 +127,16 @@
                     "name": "Pleasant Landscape 9059",
                     "artist": "Kim. Ik Mo",
                     "image": "pleasant-landscape.jpg",
-                    "description": "Play of Abstract Landscape Kim Ik Mo recently painted a picture with freely splashed paint across the surface and called it, New Dream Journey to the Peach Blossom Land."
+                    "description": "Play of Abstract Landscape Kim Ik Mo recently painted a picture with freely splashed paint across the surface and called it, New Dream Journey to the Peach Blossom Land.",
+                    "price": 180
                 },
                 {
                     "id": 2,
                     "name": "Woman at a Window",
                     "artist": "Caspar David Friedrich",
                     "image": "woman-window.jpg",
-                    "description": "A young woman stands at the window of Friedrich’s studio. It is Caroline, the painter’s wife. With her back to the viewer, she is looking out across the River Elbe to the other side."
+                    "description": "A young woman stands at the window of Friedrich’s studio. It is Caroline, the painter’s wife. With her back to the viewer, she is looking out across the River Elbe to the other side.",
+                    "price": 220
                 }
             ]
         }

@@ -100,15 +100,15 @@ input[type="text"] {
   margin-right: 50px;
 }
 .shopping-cart-icon {
-  font-size: 24px; /* Adjust the size as needed */
-  color: #000; /* Adjust the color as needed */
+  font-size: 24px; 
+  color: #000; 
   text-decoration: none;
-  margin-right: 20px; /* Remove underline */
+  margin-right: 20px; 
 }
 .home-link {
-  margin-right: 20px; /* Adjust spacing between the logo and home link */
-  text-decoration: none; /* Remove underline */
-  color: #000; /* Adjust color as needed */
+  margin-right: 20px; 
+  text-decoration: none; 
+  color: #000; 
 }
 
 </style>
