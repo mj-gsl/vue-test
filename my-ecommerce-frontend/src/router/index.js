@@ -1,4 +1,3 @@
-// router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
 import PaintingCategory from '@/components/PaintingCategory.vue';
 import SculptureCategory from '@/components/SculptureCategory.vue';

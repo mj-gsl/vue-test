@@ -6,9 +6,9 @@
         v-for="(image, index) in images"
         :key="index"
         class="image-item"
-        @click="openSubcategory"
+        @click="openSubcategory(image)"
       >
-        <h3 class="image-title">Sculpture</h3>
+        <h3 class="image-title">{{ categoryName }}</h3>
         <img :src="image.src" :alt="image.alt" />
         <p>{{ image.description }}</p>
       </div>
@@ -19,6 +19,7 @@
 <script>
 import sculptureImage from "@/assets/sculpture_men.jpg";
 import { useRouter } from "vue-router";
+
 export default {
   props: {
     categoryName: String,
@@ -36,11 +37,12 @@ export default {
     };
   },
   methods: {
-    openSubcategory() {
-      // Hier kannst du die Logik für das Öffnen der Unterseite hinzufügen
+    openSubcategory(image) {
+      // Hier die Logik für das Öffnen der Unterseite anpassen
       // Beispiel: Verwende Vue Router, um zur Unterseite zu navigieren
       const router = useRouter();
-      router.push("/subcategory/painting"); // Passe den Pfad entsprechend an
+      // Hier musst du den Pfad basierend auf der ausgewählten Kategorie und Bild festlegen
+      router.push(`/subcategory/${this.categoryName.toLowerCase()}/${image.alt.toLowerCase()}`);
     },
   },
 };

@@ -9,7 +9,7 @@
         v-for="(image, index) in images"
         :key="index"
         class="image-item"
-        @click="openSubcategory(image.alt)"
+        @click="() => openSubcategory(image.alt)"
       >
         <h3 class="image-title">{{ image.title }}</h3>
         <img :src="image.src" :alt="image.alt" />
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import graffitiImage from "@/assets/graffiti Alert.jpg"; // Pfade zu den Bildern anpassen
 import { useRouter } from "vue-router";
 
 export default {
@@ -31,9 +30,8 @@ export default {
     return {
       images: [
         {
-          src: graffitiImage,
           alt: "Graffiti",
-          title: "Graffiti Title",
+          title: "Graffiti",
           description: "Beschreibung für Graffiti",
         },
         // ... Weitere Bilder für diese Kategorie
