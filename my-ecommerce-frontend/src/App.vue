@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <HeaderComponent />
     <div class="container">
       <router-view />
     </div>
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import Header from "@/components/Header-component.vue";
+import HeaderComponent from "@/components/HeaderComponent.vue";
 
 export default {
   name: "App",
   components: {
-    Header,
+    HeaderComponent,
   },
   created() {
     this.checkAuthentication();

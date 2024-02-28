@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="HeaderComponent">
     <!-- Logo and Categories -->
     <div class="logo-and-categories">
       <!-- Logo -->
@@ -24,16 +24,7 @@
 
 <!-- SearchBar Component -->
      <div>
-      <form class="example" action="action_page.php">
-    <input type="text" v-model="input" placeholder="Search product..." />
-    <div class="item product" v-for="product in filteredList" :key="product">
-      <p>{{ product }}</p>
-    </div>
-    <div class="item error" v-if="input && !filteredList.length">
-      <p>No results found!</p>
-    </div>
-    <button type="submit"><i class="fa fa-search"></i></button>
-   </form>
+    <SearchResultsView/>
     </div>
   
     <!-- Shopping Cart Icon -->
@@ -45,31 +36,33 @@
 
 <script>
 import categoryData from "@/data.json";
+import SearchResultsView from "@/views/SearchResultsView.vue";
 
 export default {
-  data() {
-    return {
-      categories: categoryData.category,
-      selectedCategory: "",
-      searchQuery: "",
-    };
-  },
-  methods: {
-    selectCategory() {
-      if (this.selectedCategory) {
-        this.$router.push({ name: 'CategoryShow', params: { name: this.selectedCategory } });
-      }
+    data() {
+        return {
+            categories: categoryData.category,
+            selectedCategory: "",
+            searchQuery: "",
+        };
     },
-    handleSearchInput() {
-      // Handle search input event
-      // You can implement filtering based on the search query
+    methods: {
+        selectCategory() {
+            if (this.selectedCategory) {
+                this.$router.push({ name: 'CategoryShow', params: { name: this.selectedCategory } });
+            }
+        },
+        handleSearchInput() {
+            // Handle search input event
+            // You can implement filtering based on the search query
+        },
     },
-  },
+    components: { SearchResultsView }
 };
 </script>;
 
 <style>
-.header {
+.HeaderComponent {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -100,43 +93,7 @@ form.example::after {
     clear: both;
     display: table;
 }
-select,
-  input[type="text"] {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 200px;
-  }
-  * {
-      box-sizing: border-box;
-  }
-  
-  /* Stil für das Suchfeld */
-  form.example input[type=text] {
-      padding: 10px;
-      font-size: 17px;
-      border: 1px solid grey;
-      float: left;
-      width: 80%;
-      background: #f1f1f1;
-  }
-  
-  /* Stil für den Suchbutton */
-  form.example button {
-      float: left;
-      width: 20%;
-      padding: 10px;
-      background: #2196F3;
-      color: white;
-      font-size: 17px;
-      border: 1px solid grey;
-      border-left: none; /* Doppelte Rahmen verhindern */
-      cursor: pointer;
-  }
-  
-  form.example button:hover {
-      background: #0b7dda;
-  }
+
 
 
 .shopping-cart-icon {
