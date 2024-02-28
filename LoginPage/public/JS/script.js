@@ -35,3 +35,25 @@ function showSlides() {
   setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
 
+//------
+document.addEventListener('DOMContentLoaded', (event) => {
+    const textWrapper = document.querySelector('.explanatory_text_wrapper');
+    textWrapper.classList.add('blink');
+    setTimeout(() => {
+    textWrapper.classList.remove('blink');
+  }, 1000);
+  // Google login button event listener
+  const googleLoginBtn = document.querySelector('.google-login-button');
+  googleLoginBtn.addEventListener('click', function() {
+    const loginFormWrapper = document.querySelector('.login_form_wrapper');
+    loginFormWrapper.classList.toggle('active');
+  });
+
+  // Slideshow right slide in effect
+  window.addEventListener('load', function() {
+    const slideshowWrapper = document.querySelector('.slideshow_wrapper');
+    slideshowWrapper.style.right = '0'; // Adjust as needed for initial position
+  });
+});
+
+

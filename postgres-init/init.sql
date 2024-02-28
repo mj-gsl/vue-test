@@ -2,10 +2,16 @@ CREATE TABLE IF NOT EXISTS products (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   description TEXT,
-  price NUMERIC(10, 2) NOT NULL
+  price NUMERIC(10, 2) NOT NULL,
+  category VARCHAR(255) NOT NULL -- Added category column
 );
 CREATE INDEX ON products (name);
-INSERT INTO products (name, description, price) VALUES ('Wild horses', 'Horses, Pair, Wild horses image', 200.99), ('Grafitti', 'Color, Acrylic paint, Art image', 120.99), ('Watercolor', 'colors watercolor .', 109.99);
+
+-- Updated INSERT statements to include the category
+INSERT INTO products (name, description, price, category) VALUES 
+('Wild horses', 'Horses, Pair, Wild horses image', 200.99, 'Painting'),
+('Graffiti', 'Color, Acrylic paint, Art image', 120.99, 'Graffiti'),
+('Watercolor', 'colors watercolor .', 109.99, 'Handicrafts');
 
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
