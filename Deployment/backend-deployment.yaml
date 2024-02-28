@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: mj5248/test-vue-backend:latest
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: app-config
+        - secretRef:
+            name: app-secret
+        env:
+        # Additional environment variables not covered by ConfigMap or Secret can be specified here.
+        - name: PORT
+          value: "3000"
+          
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: NODE_ENV
+      restartPolicy: Always

@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  ports:
+    - port: 5435
+      targetPort: 5432
+  selector:
+    app: postgres
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:13
+        env:
+          - name: POSTGRES_USER
+            value: "marketplace"
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: app-secret
+                key: DB_PASSWORD
+          - name: POSTGRES_DB
+            value: "mp"
+        ports:
+          - containerPort: 5432
+        volumeMounts:
+          - name: pgdata
+            mountPath: /var/lib/postgresql/data
+          - name: init-db
+            mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: pgdata
+        persistentVolumeClaim:
+          claimName: postgres-pvc
+      - name: init-db
+        configMap:
+          name: postgres-init-sql
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init-sql
+data:
+  init.sql: |
+    CREATE TABLE IF NOT EXISTS products (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      description TEXT,
+      price NUMERIC(10, 2) NOT NULL
+    );
+    CREATE INDEX ON products (name);
+    INSERT INTO products (name, description, price) VALUES ('Wild horses', 'Horses, Pair, Wild horses image', 200.99), ('Grafitti', 'Color, Acrylic paint, Art image', 120.99), ('Watercolor', 'colors watercolor .', 109.99);
+
+    CREATE TABLE IF NOT EXISTS users (
+      id SERIAL PRIMARY KEY,
+      google_id VARCHAR(255) UNIQUE NOT NULL,
+      email VARCHAR(255) UNIQUE NOT NULL,
+      name VARCHAR(255),
+      profile_photo VARCHAR(255)
+    );
+

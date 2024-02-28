@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loginpage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loginpage
+  template:
+    metadata:
+      labels:
+        app: loginpage
+    spec:
+      containers:
+      - name: loginpage
+        image: mj5248/test-vue-loginpage:latest
+        ports:
+        - containerPort: 3001
+        env:
+        # Set the PORT value directly
+        - name: PORT
+          value: "3001"
+        # Keep other environment variables loaded from ConfigMap and Secret
+        envFrom:
+        - secretRef:
+            name: app-secret
+        # Add any other required environment variables here
+        # ...
+      restartPolicy: Always

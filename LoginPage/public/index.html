@@ -1,85 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Animated Login Form using HTML  CSS</title>
-    <link rel="stylesheet" href="./CSS/style.css" />
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
-  </head>
-  <body>
-    <!-- BACKGROUND-WRAPPER -->
-    <main class="background_wrapper">
-      <div class="login_form_wrapper">
-        <!-- FORM -->
-        <form action="#" class="login__form">
-          <h1 class="title">Login</h1>
 
-          <div class="login_form_content">
-            <!-- LOGIN-CONTENT-BOX-1 -->
-            <div class="login_content_box">
-              <ion-icon name="person-outline"></ion-icon>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketplace Application</title>
+  <link rel="stylesheet" href="./CSS/style.css" />
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
 
-              <div class="login_content_box--input">
-                <input
-                  type="email"
-                  placeholder=" "
-                  class="login__input email--input"
-                  required
-                />
-                <label for="email" class="login__label">Email</label>
-              </div>
-            </div>
-            <!-- LOGIN-CONTENT-BOX-2 -->
-            <div class="login_content_box">
-              <ion-icon name="lock-closed-outline"></ion-icon>
+<body>
+  <!-- BACKGROUND-WRAPPER -->
+  <main class="background_wrapper">
+    <div class="explanatory_text_wrapper">
+      <h2>Willkommen beim Creative Marketplace:</h2>
+      
+      <h4>Trete ein in die Welt der Kreativität! 
+      Logge dich in deinen Creative 
+      Marketplace-Account ein, um deine einzigartigen
+      Kreationen mit der Welt zu teilen. 
+      Egal, ob du ein erfahrener Künstler, Hobbyist oder Handwerker bist, hier findest du
+      den perfekten Ort, um deine Werke zu präsentieren und zu verkaufen.</h4>
+      <h2>Deine kreative Reise beginnt hier:</h2>
+      Herzlich willkommen auf der Login-Seite des Creative Marketplace! Melde dich an, um dich mit einer Gemeinschaft von
+      Gleichgesinnten zu verbinden, deine Projekte hochzuladen und deine Leidenschaften zu verkaufen. Mach mit bei einer
+      inspirierenden Reise durch Kunst, Handwerk und Hobbys – wir freuen uns darauf, deine kreativen Talente zu entdecken.
+      <h2>Einloggen und kreativ werden:</h2>
+      Betrete den Creative Marketplace, wo Künstler, Hobbyisten und Handwerker sich treffen, um ihre einzigartigen Schöpfungen
+      zu teilen. Mit deinem Login kannst du nicht nur deine Werke hochladen, sondern auch eine Community von Kreativen
+      entdecken, die deine Leidenschaft für Kunst und Handwerk teilen. Starte jetzt deine kreative Reise!     
+    </div>
 
-              <div class="login_content_box--input">
-                <input
-                  type="password"
-                  placeholder=" "
-                  class="login__input password--input"
-                  required
-                />
-                <label for="password" class="login__label">Password</label>
-                <ion-icon
-                  class="password__hidden"
-                  id="password_hidden"
-                  name="eye-off-outline"
-                ></ion-icon>
-              </div>
-            </div>
-            <!-- REMEMBER-LOGIN -->
-            <div class="remember_login">
-              <div class="remember_login_content">
-                <input type="checkbox" class="remember_login_input" />
-                <label for="remember" class="remember_login_label text--sm"
-                  >Remember me</label
-                >
-              </div>
-              <!-- FORGET PASSWORD -->
-              <a href="#" class="forget__login text--sm">Forget password?</a>
-            </div>
-
-            <!-- LOGIN BUTTON -->
-            <button class="button__login">Login</button>
-            <!-- REGISTER LOGIN -->
-            <!-- For the Google login button -->
-            <a href="http://localhost:3001/auth/google" class="google-login-button">Login with Gmail</a>
-
-          </div>
-        </form>
+    <!-- Slideshow container -->
+    <div class="slideshow_wrapper">
+      <div class="slide fade">
+        <img src="img/graffiti-508272_1920.jpg" style="width:70%">
       </div>
-    </main>
+      <div class="slide fade">
+        <img src="img/paint-2940513_1920.jpg" style="width:100%">
+      </div>
+      <div class="slide fade">
+        <img src="img/photographer-407068_1920.jpg" style="width:100%">
+      </div>
+      <div class="slide fade">
+        <img src="img/pottery-1139047_1920.jpg" style="width:100%">
+      </div>
+    </div>
 
-    <!-- SCRIPT.JS -->
-    <script src="./JS/script.js"></script>
-  </body>
+    <div class="login_form_wrapper">
+      
+      <!-- FORM -->
+      <form action="#" class="login__form">
+        <h1 class="title">Login</h1>
+
+        <div class="login_form_content">
+          <!-- LOGIN-CONTENT-BOX-1 -->
+          <div class="login_content_box">
+            <ion-icon name="person-outline"></ion-icon>
+
+            <div class="login_content_box--input">
+              <input type="email" placeholder=" " class="login__input email--input" required />
+              <label for="email" class="login__label">Email</label>
+            </div>
+          </div>
+          <!-- LOGIN-CONTENT-BOX-2 -->
+          <div class="login_content_box">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+
+            <div class="login_content_box--input">
+              <input type="password" placeholder=" " class="login__input password--input" required />
+              <label for="password" class="login__label">Password</label>
+              <ion-icon class="password__hidden" id="password_hidden" name="eye-off-outline"></ion-icon>
+            </div>
+          </div>
+          <!-- REMEMBER-LOGIN -->
+          <div class="remember_login">
+            <div class="remember_login_content">
+              <input type="checkbox" class="remember_login_input" />
+              <label for="remember" class="remember_login_label text--sm">Remember me</label>
+            </div>
+            <!-- FORGET PASSWORD -->
+            <a href="#" class="forget__login text--sm">Forget password?</a>
+          </div>
+
+          <!-- LOGIN BUTTON -->
+          <button class="button__login">Login</button>
+          <!-- REGISTER LOGIN -->
+          <!-- For the Google login button -->
+          <a href="http://localhost:3001/auth/google" class="google-login-button">
+            <img src="img/google.png" alt="Google Icon" style="width: 50px; height: 50px;">
+            <span style="color: white;">Login with Gmail</span>
+          </a>
+
+
+
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- SCRIPT.JS -->
+  <script src="./JS/script.js"></script>
+</body>
+
 </html>

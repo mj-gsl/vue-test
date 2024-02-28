@@ -36,8 +36,139 @@ ion-icon {
   font-size: 24px;
 }
 
+/* For explain the project ******************/
+.explanatory_text_wrapper {
+background-color: rgba(255, 255, 255, 0.1);
+  /* semi-transparent white */
+  color: white;
+  /* text color */
+  padding: 2.5rem;
+  /* inner spacing */
+  border-radius: 1.5rem;
+  /* rounded corners */
+  backdrop-filter: blur(10px);
+  /* blur effect */
+  border: 2px solid hsl(0, 0%, 90%);
+  /* border styling */
+  margin-left: 50px;
+  /* space from the left border */
+  max-width: 500px;
+  /* maximum width */
+}
+@media (max-width: 768px) {
+.background_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* Creates three columns */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 0 10px;
+    position: relative;
+    gap: 20px;
+    /* Adds space between elements */
+  }
+  .login_form_wrapper,
+  .explanatory_text_wrapper {
+    max-width: 100%;
+    margin: 20px 0;
+    grid-area: 1 / 1 / 2 / 2;
+    /* adds vertical space between them */
+  }
+}
+
+/* Slideshow container */
+.slideshow_wrapper {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  margin: 0 auto;
+  /* Centers the slideshow */
+  grid-area: 1 / 2 / 2 / 3;
+    /* Places it in the second column */
+  z-index: 2;
+  transform: translate(-15%, -30vh);
+}
+
+/* Slide */
+.slide {
+  display: none;
+  /* Hide slides by default */
+  width: 100%;
+  /* Full width */
+  transition: 0.5s;
+  /* Transition for the fade effect */
+}
+
+/* Display the first image */
+.slide:first-child {
+  display: block;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: .4
+  }
+
+  to {
+    opacity: 1
+  }
+}
+@media only screen and (max-width: 768px) {
+  .slideshow_wrapper {
+    max-width: 100%;
+  }
+}
+
+.slideshow_container {
+  width: 100%;
+  /* Or any other width */
+  height: 300px;
+  /* Adjust the height as needed */
+  margin: 0 auto;
+  /* Centers the slideshow container */
+  position: relative;
+  /* For positioning the images absolutely within */
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* This will cover the area without stretching images */
+  position: absolute;
+  transition: opacity 1s ease-in-out;
+  /* Smooth transition for fading */
+}
+@media only screen and (max-width: 768px) {
+  .slideshow_container {
+    height: 200px;
+    /* Smaller height for smaller devices */
+  }
+}
+
+
+
+
+
+
+
 /* BACKGROUND-IMAGE WRAPPER */
 .background_wrapper {
+  display: flex;
+  justify-content: space-between;
+  grid-template-columns: 1.5fr 1fr;
+  /* creates two columns of equal width */
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 0 10px;
   position: relative;
   width: 100%;
   height: 100vh;
@@ -62,8 +193,18 @@ ion-icon {
   filter: brightness(0.88);
   z-index: -1;
 }
+
+
 /* LOGIN-FORM */
 .login_form_wrapper {
+  margin: 0 auto;
+    /* centers the form */
+    padding: 2.5rem;
+    /* provides padding inside the container */
+    max-width: 500px;
+    /* maximum width */
+    margin-right: 50px;
+    /* space from the right border */
   z-index: 999;
   position: relative;
   background-color: hsla(0, 0%, 10%, 0.1);
@@ -73,7 +214,9 @@ ion-icon {
   border-radius: 1.5rem;
   backdrop-filter: blur(10px);
   padding: 2.5rem 2rem 3.5rem;
+  margin-left: auto;
   width: 26.25rem;
+  grid-area: 1 / 3 / 2 / 4;
 }
 /* TITLE */
 .title {

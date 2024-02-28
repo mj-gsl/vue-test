@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: mj5248/test-vue-frontend:latest
+        ports:
+        - containerPort: 80
+        envFrom:  # Using ConfigMap and Secret for environment variables
+        - configMapRef:
+            name: app-config
+        - secretRef:
+            name: app-secret
+      restartPolicy: Always
