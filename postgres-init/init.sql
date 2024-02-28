@@ -14,3 +14,11 @@ CREATE TABLE IF NOT EXISTS users (
   name VARCHAR(255),
   profile_photo VARCHAR(255)
 );
+CREATE TABLE IF NOT EXISTS category (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  product_id INT,
+  FOREIGN KEY (product_id) REFERENCES products(id) 
+);
+
