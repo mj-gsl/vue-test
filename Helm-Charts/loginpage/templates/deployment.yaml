@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mychart.fullname" . }}-loginpage
+  labels:
+  {{- include "mychart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.loginpage.replicas }}
+  selector:
+    matchLabels:
+      app: loginpage
+    {{- include "mychart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: loginpage
+      {{- include "mychart.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - env:
+        - name: PORT
+          value: {{ quote .Values.loginpage.loginpage.env.port }}
+        - name: KUBERNETES_CLUSTER_DOMAIN
+          value: {{ quote .Values.kubernetesClusterDomain }}
+        envFrom:
+        - secretRef:
+            name: app-secret
+        image: {{ .Values.loginpage.loginpage.image.repository }}:{{ .Values.loginpage.loginpage.image.tag
+          | default .Chart.AppVersion }}
+        name: loginpage
+        ports:
+        - containerPort: 3001
+        resources: {}
+      restartPolicy: Always

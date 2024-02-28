@@ -1,0 +1,14 @@
+kubernetesClusterDomain: cluster.local
+loginpage:
+  loginpage:
+    env:
+      port: "3001"
+    image:
+      repository: mj5248/test-vue-loginpage
+      tag: latest
+  replicas: 1
+service:
+  ports:
+  - port: 3001
+    targetPort: 3001
+  type: ClusterIP

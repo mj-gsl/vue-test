@@ -1,0 +1,13 @@
+frontend:
+  frontend:
+    image:
+      repository: mj5248/test-vue-frontend
+      tag: latest
+  replicas: 1
+kubernetesClusterDomain: cluster.local
+service:
+  ports:
+  - nodePort: 30080
+    port: 80
+    targetPort: 80
+  type: NodePort
