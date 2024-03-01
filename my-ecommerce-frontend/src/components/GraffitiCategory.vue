@@ -1,79 +1,101 @@
+<!-- GraffitiCategory.vue -->
 <template>
-  <div>
-    <!-- Kategorie-Titel -->
-    <h2 class="category-title">{{ categoryName }}</h2>
-
-    <!-- Bilder anzeigen -->
-    <div class="image-container">
-      <div
-        v-for="(image, index) in images"
-        :key="index"
-        class="image-item"
-        @click="() => openSubcategory(image.alt)"
-      >
-        <h3 class="image-title">{{ image.title }}</h3>
-        <img :src="image.src" :alt="image.alt" />
-        <p>{{ image.description }}</p>
+  <div class="GraffitiCategory">
+    <div
+      v-for="(product, index) in products"
+      :key="product.id"
+      class="product-item"
+    >
+      <div class="product-image">
+        <img
+          :src="images[index]"
+          :alt="product.name"
+        >
+      </div>
+      <div class="product-info">
+        <h1>{{ product.name }}</h1>
+        <p class="product-description">
+          {{ product.description }}
+        </p>
+        <p class="product-price">
+          Price: ${{ product.price }}
+        </p>
       </div>
     </div>
   </div>
 </template>
+  
+  <script>
+ 
+  import axios from 'axios';
+  import carImage from '@/assets/graffiti/car-graffiti.jpg';
 
-<script>
-import { useRouter } from "vue-router";
-
-export default {
-  props: {
-    categoryName: String, // Der Name der Kategorie
-  },
-  data() {
-    return {
-      images: [
-        {
-          alt: "Graffiti",
-          title: "Graffiti",
-          description: "Beschreibung für Graffiti",
-        },
-        // ... Weitere Bilder für diese Kategorie
-      ],
-    };
-  },
-  methods: {
-    openSubcategory(subcategory) {
-      // Hier kannst du die Logik für das Öffnen der Unterseite hinzufügen
-      // Beispiel: Verwende Vue Router, um zur Unterseite zu navigieren
-      const router = useRouter();
-      router.push(`/subcategory/${subcategory.toLowerCase()}`); // Passe den Pfad entsprechend an
+  export default {
+    name: 'GraffitiCategory',
+    data() {
+      return {
+        products: [],
+        images: [carImage]
+      };
     },
-  },
-};
-</script>
+    mounted() {
+      this.fetchGraffitiProducts();
+    },
+    methods: {
+      async fetchGraffitiProducts() {
+        try {
+          const response = await axios.get('http://localhost:3000/GraffitiCategory');
+          this.products = response.data.map((product, index) => {
+            return {
+              ...product,
+              imageUrl: this.images[index % this.images.length]
+            };
+          });
+        } catch (error) {
+          console.error("Error fetching graffiti products:", error);
+        }
+      }
+    }
+  };
+  </script>
+  
+  <style scoped>
+  /* Hier könnten zusätzliche Stile für GraffitiCategory hinzugefügt werden */
+  .GraffitiCategory {
+    font-family: Arial, sans-serif;
+  }
+  
+  .artwork {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .product-image img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .product-info {
+    text-align: center;
+  }
+  
+  .product-info h1 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .product-info .product-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .product-info .product-price {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    font-weight: bold;
+  }
+  </style>
 
-<style scoped>
-/* Stil für die Bilder */
-.category-title {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.image-container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.image-item {
-  text-align: center;
-  margin: 10px;
-  cursor: pointer;
-}
-
-.image-item img {
-  width: 200px; /* Größere Breite für das Bild */
-  height: auto;
-}
-
-.image-title {
-  margin-bottom: 5px;
-}
-</style>

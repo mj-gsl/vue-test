@@ -28,3 +28,18 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
+// ...
+app.get('/GraffitiCategory', async (req, res) => {
+  try {
+    const { rows } = await pool.query(`
+      SELECT products.*, graffiti_category.image_url 
+      FROM products
+      JOIN graffiti_category ON products.id = graffiti_category.product_id
+    `);
+    res.json(rows);
+  } catch (error) {
+    console.error("Error fetching graffiti category:", error);
+    res.status(500).send('Server error');
+  }
+});
+// ...
