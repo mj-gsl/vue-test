@@ -1,22 +1,26 @@
 <template>
   <div id="app">
     <GraffitiCategory />
+    <FuturismusCategory />
     <!-- if i want to add other components based on the authentication status -->
   </div>
 </template>
 
 <script>
+import "./assets/main.css";
 import GraffitiCategory from "./components/GraffitiCategory.vue";
+import FuturismusCategory from "./components/FuturismusCategory.vue";
 // Importiere hier zusätzliche Komponenten, die du anzeigen möchtest
 
-import "./assets/main.css";
+
+
 
 export default {
   name: "App",
   components: {
     GraffitiCategory,
-    // Füge hier zusätzliche Komponenten hinzu, die du verwenden möchtest
-  },
+    FuturismusCategory
+},
   data() {
     return {
       authenticated: false, // Setze den Authentifizierungsstatus nach Bedarf
@@ -34,14 +38,6 @@ export default {
 };
 </script>
 
-<style>
-#app {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background-color: #f5f5f5;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
 <style>
 #app {
   font-family: 'Helvetica Neue', Arial, sans-serif;
