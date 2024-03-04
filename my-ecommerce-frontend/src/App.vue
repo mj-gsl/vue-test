@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import GraffitiCategory from "./components/GraffitiCategory.vue";
-// Importiere hier zusätzliche Komponenten, die du anzeigen möchtest
 
 import "./assets/main.css";
+import GraffitiCategory from "./components/GraffitiCategory.vue";
+// Importiere hier zusätzliche Komponenten, die du anzeigen möchtest
 
 export default {
   name: "App",
