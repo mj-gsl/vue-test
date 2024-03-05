@@ -5,9 +5,19 @@
       <img :src="user.profile_photo" alt="Profile Photo" class="profile-photo"/>
       <h2>Welcome, {{ user.name }}!</h2>
     </div>
-    <div v-for="product in products" :key="product.id" class="product-item">
-      <!-- ...other product details... -->
-    </div>
+   <div class="product-list">
+        <div v-for="product in products" :key="product.id" class="product-item">
+            <div class="product-image">
+                <!-- Use product.imageUrl for image source -->
+                <img :src="product.image_url" :alt="product.name" />
+            </div>
+            <div class="product-info">
+                <h1>{{ product.name }}</h1>
+                <p class="product-description">{{ product.description }}</p>
+                <p class="product-price">Price: ${{ product.price }}</p>
+            </div>
+        </div>
+    </div> 
   </div>
 </template>
 
@@ -55,8 +65,5 @@ export default {
   height: 50px;
   border-radius: 50%;
 }
-.user-info {
-  text-align: center;
-  margin-bottom: 20px;
-}
+
 </style>
