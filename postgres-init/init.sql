@@ -3,15 +3,10 @@ CREATE TABLE IF NOT EXISTS products (
   name VARCHAR(255) NOT NULL,
   description TEXT,
   price NUMERIC(10, 2) NOT NULL,
-  category VARCHAR(255) NOT NULL -- Added category column
+  category VARCHAR(255) NOT NULL, -- Existing category column
+  image_url VARCHAR(255) -- Added column for storing the image URL
 );
 CREATE INDEX ON products (name);
-
--- Updated INSERT statements to include the category
-INSERT INTO products (name, description, price, category) VALUES 
-('Wild horses', 'Horses, Pair, Wild horses image', 200.99, 'Painting'),
-('Graffiti', 'Color, Acrylic paint, Art image', 120.99, 'Graffiti'),
-('Watercolor', 'colors watercolor .', 109.99, 'Handicrafts');
 
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
