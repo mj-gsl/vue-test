@@ -1,45 +1,42 @@
 <template>
   <div id="app">
-    <ProductList />
-    <!-- if i want to add other components based on the authentication status -->
+    <router-view />
   </div>
 </template>
 
 <script>
-import ProductList from './components/ProductList.vue'
-import './assets/main.css';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'App',
-  components: {
-    ProductList
+  computed: {
+    ...mapGetters(['isAuthenticated']), // Use Vuex getter to check if user is authenticated
   },
   created() {
     this.checkAuthentication();
   },
   methods: {
+    ...mapActions(['authenticateUser']),
     checkAuthentication() {
-      fetch('http://localhost:3001/auth/login/success')
+      // Fetch the login success state from your backend
+      fetch('http://localhost:3001/auth/login/success', { credentials: 'include' })
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            // Handle the authenticated user
+            // Use Vuex action to store authenticated user data
+            this.authenticateUser(data.user);
             console.log('User is authenticated:', data.user);
-            // Here i might want to store the user data in a global state or emit an event, maybe later!!
           } else {
-            // User is not authenticated
             console.log('User is not authenticated');
-            // Redirect to login or show an error message
-            // this.$router.push('/login'); // if i am using vue-router but i didn't use
+            // Handle not authenticated state, e.g., redirect to login page
           }
         })
         .catch(error => {
           console.error('Error:', error);
-          // Handle the error, maybe show a notification or message
         });
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
