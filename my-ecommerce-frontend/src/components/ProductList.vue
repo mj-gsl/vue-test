@@ -1,23 +1,27 @@
 <template>
   <div class="product-list">
-    <!-- Display the user's name and profile picture if they are fetched -->
     <div v-if="user" class="user-info">
       <img :src="user.profile_photo" alt="Profile Photo" class="profile-photo"/>
-      <h2>Welcome, {{ user.name }}!</h2>
+      <h4>Welcome, {{ user.name }}!</h4>
+      <router-link :to="{ name: 'UserProfile', params: { userId: user.id }}">My Profile</router-link>
     </div>
-   <div class="product-list">
-        <div v-for="product in products" :key="product.id" class="product-item">
-            <div class="product-image">
-                <!-- Use product.imageUrl for image source -->
-                <img :src="product.image_url" :alt="product.name" />
-            </div>
-            <div class="product-info">
-                <h1>{{ product.name }}</h1>
-                <p class="product-description">{{ product.description }}</p>
-                <p class="product-price">Price: ${{ product.price }}</p>
-            </div>
+    <div class="product-list">
+      <div v-for="product in products" :key="product.id" class="product-item">
+        <div class="product-image" @click="selectProductImage(product.image_url)">
+          <img :src="product.image_url" :alt="product.name" />
         </div>
-    </div> 
+        <div class="product-info">
+          <h1>{{ product.name }}</h1>
+          <p class="product-description">{{ product.description }}</p>
+          <p class="product-price">Price: ${{ product.price }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal for displaying selected product image -->
+    <div v-if="selectedProductImage" class="modal" @click="selectedProductImage = null">
+      <img :src="selectedProductImage" class="modal-content" @click.stop>
+    </div>
   </div>
 </template>
 
@@ -30,6 +34,7 @@ export default {
   data() {
     return {
       products: [],
+      selectedProductImage: null, // For storing the selected image URL
     };
   },
   computed: {
@@ -39,7 +44,7 @@ export default {
     }),
   },
   created() {
-    this.fetchUser(); // Fetch user information on create
+    this.fetchUser();
   },
   mounted() {
     this.fetchProducts();
@@ -55,15 +60,48 @@ export default {
         console.error("Error fetching products:", error);
       }
     },
+
+    selectProductImage(imageUrl) {
+      this.selectedProductImage = imageUrl;
+    },
   }
 };
 </script>
 
 <style scoped>
-.profile-photo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+/* Your existing styles */
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+/* Ensure the user-info styles are not broken */
+.user-info {
+  display: flex; 
+  align-items: center; 
+  margin-right: 20px;
+}
+
+/* Style updates for profile-photo if necessary */
+.profile-photo {
+  /* styles */
+}
 </style>

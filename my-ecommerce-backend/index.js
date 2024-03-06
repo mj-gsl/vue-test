@@ -34,6 +34,7 @@ const pool = new Pool({
   database: process.env.DB_NAME,
 });
 //For fetch the Product List from DB 
+// Products fetching endpoint
 app.get('/products', async (req, res) => {
   try {
     const { rows } = await pool.query('SELECT * FROM products');
@@ -46,26 +47,23 @@ app.get('/products', async (req, res) => {
 
 //****** updating user profile information from DB */
 app.post('/user/profile', upload.single('image'), async (req, res) => {
-  const userId = req.user.id; // Again, adjust based on your authentication method
-  const { name, email } = req.body; // Example profile fields
-  const image = req.file;
+  const userId = req.body.id; // Make sure to get the user's ID from the request
+  const { name, email } = req.body;
+  let imageUrl = req.body.profile_photo; // Default to the existing URL if no new image is uploaded
 
-  try {
-    let imageUrl = '';
-    if (image) {
-      const s3Result = await uploadImageToS3(image);
-      imageUrl = s3Result.Location;
-    }
-
-    const queryText = 'UPDATE users SET name = $1, email = $2, profile_photo = $3 WHERE id = $4';
-    await pool.query(queryText, [name, email, imageUrl, userId]);
-
-    res.json({ success: true, message: 'Profile updated successfully' });
-  } catch (error) {
-    console.error("Error updating user profile:", error);
-    res.status(500).send('Server error');
+  if (req.file) {
+    const s3Result = await uploadImageToS3(req.file);
+    imageUrl = s3Result.Location;
+    // Optionally delete the locally stored file
+    fs.unlinkSync(req.file.path);
   }
+
+  // Update user information
+  const queryText = 'UPDATE users SET name = $1, email = $2, profile_photo = $3 WHERE id = $4';
+  await pool.query(queryText, [name, email, imageUrl, userId]);
+  res.json({ success: true, message: 'Profile updated successfully' });
 });
+
 ///********** */
 // Fetch User Profile Info from DB
 app.get('/user/profile/:userId', async (req, res) => {
@@ -106,25 +104,75 @@ const uploadImageToS3 = (file) => {
 
 
 console.log('Server is running and ready to accept POST to /submit-product');
+
+// Product submission endpoint without isAuthenticated middleware
 app.post('/submit-product', upload.single('image'), async (req, res) => {
   const { name, description, price, category } = req.body;
   const image = req.file; // Multer populates this
 
   try {
+    // Assuming the use of a placeholder user ID for demonstration purposes
+    const userId = 1; // Replace with the actual logic to get the user's ID from the request
+
     // Upload image to S3 and get the URL
     const s3Result = await uploadImageToS3(image);
     const imageUrl = s3Result.Location; // URL of the uploaded image
 
     // Insert product details into the database, including the S3 image URL
-    const queryText = 'INSERT INTO products (name, description, price, category, image_url) VALUES ($1, $2, $3, $4, $5)';
-    await pool.query(queryText, [name, description, price, category, imageUrl]);
+    const queryText = 'INSERT INTO products (name, description, price, category_id, image_url, user_id) VALUES ($1, $2, $3, (SELECT id FROM categories WHERE name = $4), $5, $6) RETURNING *';
+    const { rows } = await pool.query(queryText, [name, description, price, category, imageUrl, userId]);
+    const newProduct = rows[0];
 
-    // Cleanup: Optionally delete the locally stored file after uploading to S3
-    fs.unlinkSync(image.path);
+    // Optionally: Insert the image URL into the images table with the user's ID
+     const insertImageText = 'INSERT INTO images (user_id, image_url) VALUES ($1, $2)';
+     await pool.query(insertImageText, [userId, imageUrl]);
 
-    res.json({ message: 'Product submitted successfully', imageUrl });
+    // Respond with the new product JSON
+    res.json({
+      message: 'Product submitted successfully',
+      product: newProduct
+    });
   } catch (error) {
     console.error("Error submitting product:", error);
+    res.status(500).send('Server error');
+  }
+});
+
+// This function should be async because it will perform a database operation
+const getUserImagesFromDb = async (userId) => {
+  try {
+    // Example using pg module's Pool to query a PostgreSQL database
+    // You will need to adjust the table name and column names based on your schema
+    const { rows } = await pool.query('SELECT * FROM images WHERE user_id = $1', [userId]);
+    return rows.map(row => row.image_url); // Assuming each row has an image_url field
+  } catch (error) {
+    console.error('Database query error:', error);
+    throw error; // This will be caught by the error handler in your route
+  }
+};
+
+app.get('/user/:userId/images', async (req, res) => {
+  const { userId } = req.params;
+  
+  // Ensure that the userId is a number to avoid SQL injection and other issues.
+  if (!parseInt(userId, 10)) {
+    return res.status(400).send('User ID must be a number');
+  }
+
+  try {
+    const queryText = 'SELECT * FROM images WHERE user_id = $1';
+    const { rows } = await pool.query(queryText, [userId]);
+
+    // Convert rows to a more friendly format if needed, such as adding a base URL for image paths
+    const imageUrls = rows.map(row => ({
+      id: row.id,
+      url: row.image_url,
+      uploadedAt: row.uploaded_at
+    }));
+
+    res.json({ images: imageUrls });
+  } catch (error) {
+    console.error("Error fetching user's images:", error);
     res.status(500).send('Server error');
   }
 });

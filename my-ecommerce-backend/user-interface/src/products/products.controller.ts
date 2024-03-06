@@ -1,7 +1,15 @@
 // src/products/products.controller.ts
-import { Controller, Post, Body, UploadedFile, UseInterceptors } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  UseInterceptors,
+  UploadedFile,
+  Body,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ProductsService } from './products.service'; // Assume you have a service for handling product logic
+import { ProductsService } from './products.service';
 
 @Controller('products')
 export class ProductsController {
@@ -10,20 +18,27 @@ export class ProductsController {
   @Post('submit-product')
   @UseInterceptors(FileInterceptor('image'))
   async addProduct(
-    @UploadedFile() image,
-    @Body('name') productName: string,
-    @Body('description') productDescription: string,
-    @Body('price') productPrice: number,
-    @Body('category') productCategory: string,
+    @UploadedFile() file: Express.Multer.File,
+    @Body() productData: { name: string; description: string; price: number; category: string, userId: number },
   ) {
-    // Assuming you have a method in your service to handle the product creation
-    const generatedId = await this.productsService.insertProduct(
-      productName,
-      productDescription,
-      productPrice,
-      productCategory,
-      image,
-    );
-    return { id: generatedId };
+    // Ensure that all required fields are provided
+    if (!file || !productData.name || !productData.description || !productData.price || !productData.category || !productData.userId) {
+      throw new HttpException('Missing required fields', HttpStatus.BAD_REQUEST);
+    }
+
+    try {
+      // Call the service to handle the product creation
+      const product = await this.productsService.insertProduct(
+        productData.name,
+        productData.description,
+        productData.price,
+        productData.category,
+        productData.userId,
+        file,
+      );
+      return { id: product.id, message: 'Product submitted successfully', product };
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 }

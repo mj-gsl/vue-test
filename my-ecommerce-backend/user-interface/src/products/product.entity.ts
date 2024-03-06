@@ -20,4 +20,7 @@ export class Product {
 
   @Column({ nullable: true })
   imageUrl: string; // Column for the image URL
+  
+  @Column()
+  userId: number;
 }

@@ -17,8 +17,6 @@ export default createStore({
   actions: {
     async fetchUser({ commit }) {
       try {
-        // Make sure to replace 'http://localhost:3001/auth/login/success' with the correct endpoint
-        // to fetch the currently logged-in user's data.
         const response = await axios.get('http://localhost:3001/auth/login/success', { withCredentials: true });
         if (response.data.success) {
           commit('SET_USER', response.data.user);
@@ -30,9 +28,17 @@ export default createStore({
         commit('SET_USER', null);
       }
     },
-    logoutUser({ commit }) {
-      commit('SET_USER', null);
-      // You should also invalidate the session on the backend here.
+    async logoutUser({ commit }) {
+      try {
+        // Replace with your backend's logout endpoint
+        await axios.get('http://localhost:3001/auth/logout', { withCredentials: true });
+        commit('SET_USER', null);
+        // Optional: Redirect to login page or home page
+        // router.push('/login');
+      } catch (error) {
+        console.error('Error during logout:', error);
+        // Handle logout error (e.g., show a notification to the user)
+      }
     },
   },
 });

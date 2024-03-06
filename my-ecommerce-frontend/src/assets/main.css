@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 .product-list {
+    padding-top: 80px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -12,6 +13,7 @@
 .product-item {
     width: 240px;
     border: 1px solid #ddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -20,7 +22,7 @@
 
 .product-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 6px 12px rgba(82, 50, 3, 0.12);
 }
 
 .product-image img {
@@ -58,15 +60,70 @@
     margin-top: 5px;
 }
 .user-info {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
-    /* Adjust the margin as needed */
+    position: fixed;
+    top: 10px;
+    /* Adds space from the top */
+    right: 10px;
+    /* Adds space from the right */
+    margin: 0;
+    /* Adjusted as space is provided by top and right properties */
+    padding: 10px 20px;
+    /* Increased padding for better visual spacing */
+    background-color: rgba(156, 144, 51, 0.95);
+    /* Changed for better visibility */
+    border-radius: 30px;
+    /* Increased border-radius for a pill-shaped look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    /* Refined shadows */
+    color: #fff;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    /* Centers items horizontally */
+    font-size: 1rem;
+    /* Adjust font size if necessary */
+    cursor: pointer;
+    /* Changes the mouse cursor on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+.user-info:hover {
+    background-color: rgb(182, 149, 60);
+    transform: scale(1.05);
+    /* Slightly darker background on hover */
+}
+.router-link-active {
+    text-decoration: none;
+    color: #fff;
+    /* Adjust the color as per your theme */
+    padding: 5px 10px;
+    background-color: rgba(77, 66, 6, 0.2);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.router-link-active:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+.user-info h4 {
+    margin-right: 20px;
+    /* Adjust as needed for spacing */
 }
 
 .profile-photo {
     width: 50px;
+    /* Increased width for a larger image */
     height: 50px;
+    /* Increased height to match width */
     border-radius: 50%;
+    margin-right: 15px;
+    /* Increased space between the image and text */
+    border: 2px solid #fff;
+    /* Optional: Adds a white border around the image */
+    object-fit: cover;
+    /* Ensures the image covers the area without distortion */
 }
+
+
